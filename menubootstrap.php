@@ -94,13 +94,13 @@
 						<div class="col-lg-5 d-inline-block">
 							<h2>Jesteś już z nami? Zaloguj się!</h2>
 							
-							<a class="rejestracja my-4 mx-auto text-uppercase" href="logowanie.html">Logowanie</a>
+							<a class="rejestracja my-4 mx-auto text-uppercase" href="logowanie.php">Logowanie</a>
 							
 						</div>
 						<div class="col-lg-5 d-inline-block">
 							<h2 style="color:rgba(54,176,60);">Nie masz konta? Zarejestruj się! </h2>
 							
-							<a class="rejestracjakonta my-4 mx-auto text-uppercase" href="rejestracja.html">Rejestracja</a>
+							<a class="rejestracjakonta my-4 mx-auto text-uppercase" href="rejestracja.php">Rejestracja</a>
 							
 						</div>
 										

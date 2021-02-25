@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if(isset($_SESSION['logged_id']))
+{
+	header('Location:przychod.php');
+	exit();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -37,42 +49,55 @@
 				<div class="row">
 				
 					
-					<div class="col-lg-10 offset-lg-1 my-3 wpis">
+					<div class="col-lg-10 offset-lg-1 mt-3 wpis">
 					
 						<header>
 						
-							<h1 class="ml-0 mb-4 text-center">Witaj w aplikacji mojefinanse.com<i class="icon-money1 d-none d-lg-inline-block"></i></h1>
+							<h1 class="ml-0 mb-4 text-center">Witaj w aplikacji mojefinanse.com</h1>
 							
-							<h2 class="ml-0 mb-4 text-center"><i class="icon-money1 d-lg-none"></i></h2>
+							<h2 class="ml-0 mb-2 text-center"><i class="icon-money1"></i></h2>
 						
 						</header>
 						
 						<div id="panelrejestracji">
 						
-						<form>
-		
-							<h2 class="mb-4">Rejestracja użytkownika </h2>
-							<div class="mr-2 mr-sm-4 mr-md-5">
-							<label> Podaj swoje imię 
-							<div><i class="icon-adult mr-1"></i><input type="text" placeholder="imię" onfocus="this.placeholder=''" onblur="this.placeholder='imię'" name="name" required>
-							</div>
-							</label></div>
-							
-							<div class="mr-2 mr-sm-4 mr-md-5"><label>Podaj swój e-mail 
-							<div><i class="icon-mail-alt mr-1"></i><input type="email" placeholder="email" onfocus="this.placeholder=''" onblur="this.placeholder='email'" name="email"required>
-							</div>
-							</label></div>	
-							
-							
-							<div class="mr-2 mr-sm-4 mr-md-5"><label>Podaj hasło 
-							<div><i class="icon-key mr-1"></i><input type="password" placeholder="hasło" onfocus="this.placeholder=''" onblur="this.placeholder='hasło'" name="password" required>
-							</div>
-							</label></div>
-							
-							
-							<input type="submit"value="Zarejestruj się" class="ml-4 ml-sm-3 ml-md-0 mr-md-1">
-							
-						</form>
+							<form method="post" action="zaloguj.php">
+									
+										<h2 class="mb-4">Logowanie użytkownika </h2>
+										
+										<div class="mr-3 mr-sm-4 mr-md-5">
+										<label>Podaj swój e-mail 
+										<div><i class="icon-login"></i><input type="email" placeholder="email" onfocus="this.placeholder=''" onblur="this.placeholder='email'" <?php 
+						
+											if(isset($_SESSION['given_login']))
+											{
+												echo 'value="'.$_SESSION['given_login'].'"';
+												unset ($_SESSION['given_login']);
+											}
+											
+											?> name="email" >
+										</div>
+										</label>
+										</div>	
+										
+										
+										<div class="mr-3 mr-sm-4 mr-md-5"><label>Podaj hasło 
+										<div><i class="icon-key"></i><input type="password" placeholder="hasło" onfocus="this.placeholder=''" onblur="this.placeholder='hasło'" name="password">
+										</div>
+										</label></div>
+													
+										<input type="submit" value="Zaloguj się" class="ml-4 ml-sm-3 ml-md-0 mr-md-1">
+										<?php
+											if(isset($_SESSION['bad_attempt'])) //było nieudane logowanie
+											{
+												echo '<div class="mt-2"><p style="color:red;">Niepoprawny login lub hasło!</p></div>';
+												unset($_SESSION['bad_attempt']);
+											}					
+										?>
+										
+										<div class="money"><i class="icon-money"></i></div>
+										
+							</form>
 						</div>
 		
 						<div class="info">

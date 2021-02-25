@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['logged_id']))
+{
+	header('Location:logowanie.php');
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -63,15 +72,15 @@
 				<ul class="navbar-nav">
 				
 					<li class="nav-item ml-xl-5 mr-2">
-						<a class="nav-link" href="przychód.html"><span class="aktywny"><i class="icon-plus"></i>Dodaj przychód</span></a>
+						<a class="nav-link" href="przychod.php"><span class="aktywny"><i class="icon-plus"></i>Dodaj przychód</span></a>
 					</li>
 					
 					<li class="nav-item mr-2">
-						<a class="nav-link" href="wydatek.html"><i class="icon-minus"></i>Dodaj wydatek</a>
+						<a class="nav-link" href="wydatek.php"><i class="icon-minus"></i>Dodaj wydatek</a>
 					</li>
 					
 					<li class="nav-item mr-2">
-						<a class="nav-link" href="bilans.html"><i class="icon-balance-scale"></i> Wyświetl bilans</a>
+						<a class="nav-link" href="biezacymiesiac.php"><i class="icon-balance-scale"></i> Wyświetl bilans</a>
 					</li>
 					
 					<li class="nav-item mr-2">
@@ -79,7 +88,7 @@
 					</li>
 					
 					<li class="nav-item mr-2">
-						<a class="nav-link" href="#"><i class="icon-logout"></i>Wyloguj</a>
+						<a class="nav-link" href="logout.php"><i class="icon-logout"></i>Wyloguj</a>
 					</li>
 				
 				</ul>
@@ -107,7 +116,7 @@
 							
 						</header>
 					
-						<form action="income.php" method="post">
+						<form action="dodajprzychod.php" method="post">
 					
 							<div class="col-lg-6 pole d-inline-block ml-0">
 								<label>Podaj kwotę: <input type="number" step="0.01" placeholder="kwota w zł" onfocus="this.placeholder=''" onblur="this.placeholder='kwota w zł'" name="kwota" required><label>
@@ -122,10 +131,10 @@
 													
 									<h2 class="text-center text-lg-left">Kategoria przychodu</h2>
 								
-									<div><label><input type="radio" value="1" name="przychod" checked> Wynagrodzenia</label></div>
-									<div><label><input type="radio" value="2" name="przychod"> Odsetki bankowe</label></div>
-									<div><label><input type="radio" value="3" name="przychod"> Sprzedaż na allegro</label></div>
-									<div><label><input type="radio" value="3" name="przychod"> Inna</label></div>
+									<div><label><input type="radio" value="Salary" name="przychod" checked> Wynagrodzenia</label></div>
+									<div><label><input type="radio" value="Interest" name="przychod"> Odsetki bankowe</label></div>
+									<div><label><input type="radio" value="Allegro" name="przychod"> Sprzedaż na allegro</label></div>
+									<div><label><input type="radio" value="Another" name="przychod"> Inna</label></div>
 								
 							</div>
 																	
@@ -161,9 +170,9 @@
 						<img class ="img-fluid my-2" src="img/ad.jpg" alt="Reklama">
 						
 						<ul class="list-group">
-							<a href="przychód.html" class="list-group-item list-group-item-dark list-group-item-action active"><i class="icon-plus"></i>Dodaj przychód</a>
-							<a href="wydatek.html" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-minus"></i>Dodaj wydatek</a>
-							<a href="bilans.html" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-balance-scale"></i> Wyświetl bilans</a>
+							<a href="przychod.php" class="list-group-item list-group-item-dark list-group-item-action active"><i class="icon-plus"></i>Dodaj przychód</a>
+							<a href="wydatek.php" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-minus"></i>Dodaj wydatek</a>
+							<a href="biezacymiesiac.php" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-balance-scale"></i> Wyświetl bilans</a>
 							<a href="#" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-cog"></i>Ustawienia</a>
 						</ul>
 					

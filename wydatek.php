@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['logged_id']))
+{
+	header('Location:logowanie.php');
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -63,15 +72,15 @@
 				<ul class="navbar-nav">
 				
 					<li class="nav-item ml-xl-5 mr-2">
-						<a class="nav-link" href="przychód.html"><i class="icon-plus"></i>Dodaj przychód</a>
+						<a class="nav-link" href="przychod.php"><i class="icon-plus"></i>Dodaj przychód</a>
 					</li>
 					
 					<li class="nav-item mr-2">
-						<a class="nav-link" href="wydatek.html"><span class="aktywny"><i class="icon-minus"></i>Dodaj wydatek</span></a>
+						<a class="nav-link" href="wydatek.php"><span class="aktywny"><i class="icon-minus"></i>Dodaj wydatek</span></a>
 					</li>
 					
 					<li class="nav-item mr-2">
-						<a class="nav-link" href="bilans.html"><i class="icon-balance-scale"></i> Wyświetl bilans</a>
+						<a class="nav-link" href="biezacymiesiac.php"><i class="icon-balance-scale"></i> Wyświetl bilans</a>
 					</li>
 					
 					<li class="nav-item mr-2">
@@ -79,7 +88,7 @@
 					</li>
 					
 					<li class="nav-item mr-2">
-						<a class="nav-link" href="#"><i class="icon-logout"></i>Wyloguj</a>
+						<a class="nav-link" href="logout.php"><i class="icon-logout"></i>Wyloguj</a>
 					</li>
 				
 				</ul>
@@ -107,7 +116,7 @@
 							
 						</header>
 					
-						<form action="expense.php" method="post">
+						<form action="dodajwydatek.php" method="post">
 					
 							<div class="pole col-lg-6 pole d-inline-block">
 								<label>Podaj kwotę: <input type="number" step="0.01" placeholder="kwota w zł" onfocus="this.placeholder=''" onblur="this.placeholder='kwota w zł'" name="kwota" required></label>
@@ -122,9 +131,9 @@
 													
 									<h2 class="text-center text-lg-left">Sposób płatności</h2>
 								
-									<div><label><input type="radio" value="1" name="platnosc" checked> Gotówka</label></div>
-									<div><label><input type="radio" value="2" name="platnosc"> Karta kredytowa</label></div>
-									<div><label><input type="radio" value="3" name="platnosc"> Karta debetowa</label></div>
+									<div><label><input type="radio" value="Cash" name="platnosc" checked> Gotówka</label></div>
+									<div><label><input type="radio" value="Credit Card" name="platnosc"> Karta kredytowa</label></div>
+									<div><label><input type="radio" value="Debit Card" name="platnosc"> Karta debetowa</label></div>
 								
 							</div>
 						
@@ -134,29 +143,28 @@
 																
 								<div class="col-md-5 d-inline-block">
 							
-									<div><label><input type="radio" value="1" name="kategoria"> Jedzenie</label></div>
-									<div><label><input type="radio" value="2" name="kategoria"> Mieszkanie</label></div>
-									<div><label><input type="radio" value="3" name="kategoria"> Transport</label></div>
-									<div><label><input type="radio" value="4" name="kategoria"> Telekomunikacja</label></div>
-									<div><label><input type="radio" value="5" name="kategoria"> Opieka zdrowotna</label></div>
-									<div><label><input type="radio" value="6" name="kategoria"> Ubranie</label></div>
-									<div><label><input type="radio" value="7" name="kategoria"> Higiena</label></div> 
-									<div><label><input type="radio" value="8" name="kategoria"> Dzieci</label></div>
-									<div><label><input type="radio" value="9" name="kategoria"> Rozrywka</label></div>
+									<div><label><input type="radio" value="Food" name="kategoria"> Jedzenie</label></div>
+									<div><label><input type="radio" value="Apartments" name="kategoria"> Mieszkanie</label></div>
+									<div><label><input type="radio" value="Transport" name="kategoria"> Transport</label></div>
+									<div><label><input type="radio" value="Telecommunication" name="kategoria"> Telekomunikacja</label></div>
+									<div><label><input type="radio" value="Health" name="kategoria"> Opieka zdrowotna</label></div>
+									<div><label><input type="radio" value="Clothes" name="kategoria"> Ubranie</label></div>
+									<div><label><input type="radio" value="Hygiene" name="kategoria"> Higiena</label></div> 
+									<div><label><input type="radio" value="Kids" name="kategoria"> Dzieci</label></div>
 									
-									
+																		
 								</div>
 								
 								<div class="col-md-5 d-inline-block">
 							
-									<div><label><input type="radio" value="10" name="kategoria"> Wycieczka</label></div>
-									<div><label><input type="radio" value="11" name="kategoria"> Szkolenia</label></div>
-									<div><label><input type="radio" value="12" name="kategoria"> Książki</label></div>
-									<div><label><input type="radio" value="13" name="kategoria"> Oszczędności</label></div>
-									<div><label><input type="radio" value="14" name="kategoria"> Złota jesień</label></div>
-									<div><label><input type="radio" value="15" name="kategoria"> Spłata długów</label></div>
-									<div><label><input type="radio" value="16" name="kategoria"> Darowizna</label></div>
-									<div><label><input type="radio" value="17" name="kategoria"> Inne wydatki</label></div>
+									<div><label><input type="radio" value="Recreation" name="kategoria"> Rozrywka</label></div>
+									<div><label><input type="radio" value="Trip" name="kategoria"> Wycieczka</label></div>
+									<div><label><input type="radio" value="Books" name="kategoria"> Książki</label></div>
+									<div><label><input type="radio" value="Savings" name="kategoria"> Oszczędności</label></div>
+									<div><label><input type="radio" value="For Retirement" name="kategoria"> Złota jesień</label></div>
+									<div><label><input type="radio" value="Debt Repayment" name="kategoria"> Spłata długów</label></div>
+									<div><label><input type="radio" value="Gift" name="kategoria"> Darowizna</label></div>
+									<div><label><input type="radio" value="Another" name="kategoria"> Inne wydatki</label></div>
 																	
 								</div>
 												
@@ -197,9 +205,9 @@
 						<img class ="img-fluid my-2" src="img/ad.jpg" alt="Reklama">
 						
 						<ul class="list-group">
-							<a href="przychód.html" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-plus"></i>Dodaj przychód</a>
-							<a href="wydatek.html" class="list-group-item list-group-item-dark list-group-item-action active"><i class="icon-minus"></i>Dodaj wydatek</a>
-							<a href="bilans.html" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-balance-scale"></i> Wyświetl bilans</a>
+							<a href="przychod.php" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-plus"></i>Dodaj przychód</a>
+							<a href="wydatek.php" class="list-group-item list-group-item-dark list-group-item-action active"><i class="icon-minus"></i>Dodaj wydatek</a>
+							<a href="biezacymiesiac.php" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-balance-scale"></i> Wyświetl bilans</a>
 							<a href="#" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-cog"></i>Ustawienia</a>
 						</ul>
 					

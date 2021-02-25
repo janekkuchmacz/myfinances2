@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['logged_id']))
+{
+	header('Location:logowanie.php');
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -45,15 +54,15 @@
 				<ul class="navbar-nav">
 				
 					<li class="nav-item ml-xl-5 mr-2">
-						<a class="nav-link" href="przychód.html"><i class="icon-plus"></i>Dodaj przychód</a>
+						<a class="nav-link" href="przychod.php"><i class="icon-plus"></i>Dodaj przychód</a>
 					</li>
 					
 					<li class="nav-item mr-2">
-						<a class="nav-link" href="wydatek.html"><i class="icon-minus"></i>Dodaj wydatek</a>
+						<a class="nav-link" href="wydatek.php"><i class="icon-minus"></i>Dodaj wydatek</a>
 					</li>
 					
 					<li class="nav-item mr-2">
-						<a class="nav-link" href="#"><span class="aktywny"><i class="icon-balance-scale"></i> Wyświetl bilans</span></a>
+						<a class="nav-link" href="bilans.php"><span class="aktywny"><i class="icon-balance-scale"></i> Wyświetl bilans</span></a>
 					</li>
 					
 					<li class="nav-item mr-2">
@@ -61,7 +70,7 @@
 					</li>
 					
 					<li class="nav-item mr-2">
-						<a class="nav-link" href="#"><i class="icon-logout"></i>Wyloguj</a>
+						<a class="nav-link" href="logout.php"><i class="icon-logout"></i>Wyloguj</a>
 					</li>
 				
 				</ul>
@@ -92,7 +101,7 @@
 							<div id="dropdown">
 								<a href="#">Wybierz okres czasu</a>
 								<ul>
-									   <li><a href="#" onclick="wyswietlTabele1()">Bieżący miesiąc</a></li>
+									   <li><a href="biezacymiesiac.php">Bieżący miesiąc</a></li>
 									   <li><a href="#" onclick="wyswietlTabele2()">Poprzedni miesiąc</a></li>
 									   <li><a href="#" onclick="wyswietlTabele3()">Bieżący rok</a></li>
 									   <li><a href="#" onclick="niestandardowy()">Niestandardowy</a></li>
@@ -268,9 +277,9 @@
 						
 						
 						<ul class="list-group">
-							<a href="przychód.html" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-plus"></i>Dodaj przychód</a>
-							<a href="wydatek.html" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-minus"></i>Dodaj wydatek</a>
-							<a href="bilans.html" class="list-group-item list-group-item-dark list-group-item-action active"><i class="icon-balance-scale"></i> Wyświetl bilans</a>
+							<a href="przychod.php" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-plus"></i>Dodaj przychód</a>
+							<a href="wydatek.php" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-minus"></i>Dodaj wydatek</a>
+							<a href="bilans.php" class="list-group-item list-group-item-dark list-group-item-action active"><i class="icon-balance-scale"></i> Wyświetl bilans</a>
 							<a href="#" class="list-group-item list-group-item-dark list-group-item-action"><i class="icon-cog"></i>Ustawienia</a>
 						</ul>
 					
